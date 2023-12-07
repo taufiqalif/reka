@@ -22,7 +22,7 @@ function registrasi($data)
     $password2 = mysqli_real_escape_string($conn, $data["reg-confirm-password"]);
 
     // cek username sudah ada atau belum
-    $result = mysqli_query($conn, "SELECT username FROM users WHERE username = '$name'");
+    $result = mysqli_query($conn, "SELECT name FROM users WHERE name = '$name'");
     if (mysqli_fetch_assoc($result)) {
         echo "<script>
             alert('Username sudah terdaftar!');
@@ -42,7 +42,7 @@ function registrasi($data)
     $password = password_hash($password, PASSWORD_DEFAULT);
 
     // tambahkan user baru ke database
-    mysqli_query($conn, "INSERT INTO users (username, email, password) VALUES ('$name', '$email', '$password')");
+    mysqli_query($conn, "INSERT INTO users (name, email, password) VALUES ('$name', '$email', '$password')");
 
     return mysqli_affected_rows($conn);
 }
